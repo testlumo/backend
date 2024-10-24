@@ -25,7 +25,9 @@ jobs:
           context: .
           file: ./Dockerfile
           push: true
-          tags: ghcr.io/testlumo/backend:latest
+          tags: |
+            ghcr.io/testlumo/backend:${{ github.sha }}
+            ghcr.io/testlumo/backend:latest
 
   deploy:
     runs-on: ubuntu-latest
