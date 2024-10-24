@@ -26,7 +26,11 @@ jobs:
           file: ./Dockerfile
           push: true
           tags: ghcr.io/testlumo/backend:latest
+
   deploy:
+    runs-on: ubuntu-latest  # Il faut ajouter cette ligne pour définir le type d'environnement
+
+    steps:
       - name: Set up Kubeconfig
         run: |
           mkdir -p $HOME/.kube
