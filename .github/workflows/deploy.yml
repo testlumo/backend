@@ -26,3 +26,12 @@ jobs:
           file: ./Dockerfile
           push: true
           tags: ghcr.io/testlumo/backend:latest
+
+      - name: Set up Kubeconfig
+        run: |
+          mkdir -p $HOME/.kube
+          echo "${{ secrets.KUBE_CONFIG }}" > $HOME/.kube/config
+
+      - name: Test Kubernetes Connection
+        run: |
+          kubectl get nodes
