@@ -11,14 +11,12 @@ spec:
     metadata:
       labels:
         app: backend
-      annotations:
-        kubectl.kubernetes.io/restartedAt: "$(date +%Y-%m-%dT%H:%M:%S)"  # Date/heure actuelle
     spec:
       imagePullSecrets:
         - name: my-registry-secret
       containers:
         - name: backend
-          image: ghcr.io/lumosae/backend:latest
+          image: ghcr.io/testlumo/backend:latest
           ports:
             - containerPort: 3000
 ---
