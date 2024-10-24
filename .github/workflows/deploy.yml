@@ -26,12 +26,12 @@ jobs:
           file: ./Dockerfile
           push: true
           tags: ghcr.io/testlumo/backend:latest
-
+  deploy:
       - name: Set up Kubeconfig
         run: |
           mkdir -p $HOME/.kube
           echo "${{ secrets.KUBE_CONFIG }}" > $HOME/.kube/config
 
-      - name: Test Kubernetes Connection
+      - name: Apply Kubernetes deployment
         run: |
-          kubectl get nodes
+          kubectl apply -f lumo-backend-deployment.yaml

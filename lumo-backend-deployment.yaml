@@ -1,0 +1,33 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: backend
+spec:
+  replicas: 2  # Nombre de réplicas pour le backend
+  selector:
+    matchLabels:
+      app: backend
+  template:
+    metadata:
+      labels:
+        app: backend
+    spec:
+      imagePullSecrets:
+        - name: my-registry-secret  # Référence au secret pour le registre
+      containers:
+        - name: backend
+          image: ghcr.io/lumosae/backend:latest  # Remplacez par l'image de votre backend
+          ports:
+            - containerPort: 3000  # Port d'écoute du backend
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: backend
+spec:
+  type: ClusterIP
+  ports:
+    - port: 80
+      targetPort: 3000
+  selector:
+    app: backend
