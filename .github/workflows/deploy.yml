@@ -19,15 +19,6 @@ jobs:
       - name: Log in to GitHub Container Registry
         run: echo "${{ secrets.TOKEN_PACKAGE }}" | docker login ghcr.io -u ${{ github.actor }} --password-stdin
 
-      - name: Set Docker image tag
-        id: docker_tag
-        run: |
-          if [ -n "${{ github.ref_name }}" ]; then
-            echo "tag=${{ github.ref_name }}" >> $GITHUB_ENV
-          else
-            echo "tag=${{ github.sha }}" >> $GITHUB_ENV
-          fi
-
       - name: Build and push Docker image
         uses: docker/build-push-action@v3
         with:
@@ -35,7 +26,8 @@ jobs:
           file: ./Dockerfile
           push: true
           tags: |
-            ghcr.io/testlumo/backend:${{ env.tag }}
+            ghcr.io/testlumo/backend:${{ github.sha }}
+            ghcr.io/testlumo/backend:latest
 
   deploy:
     runs-on: ubuntu-latest
