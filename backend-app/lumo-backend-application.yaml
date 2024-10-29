@@ -5,6 +5,7 @@ metadata:
   namespace: argocd
   annotations:
     argocd-image-updater.argoproj.io/image-list: backend=ghcr.io/testlumo/backend
+    argocd-image-updater.argoproj.io/auto-image-sync: 'true'
 spec:
   project: default
   source:
