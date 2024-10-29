@@ -8,8 +8,8 @@ metadata:
 spec:
   project: default
   source:
-    repoURL: https://github.com/testlumo/backend.git  # Remplace par l'URL de ton dépôt
-    path: backend-app                   # Le chemin vers le dossier contenant tes manifests
+    repoURL: https://github.com/testlumo/backend.git
+    path: backend-app
     targetRevision: main
   destination:
     server: https://kubernetes.default.svc
