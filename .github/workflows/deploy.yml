@@ -8,7 +8,7 @@ on:
     branches:
       - main
   release:
-    types: [created]  # Déclenche le workflow lors de la création d'une nouvelle release
+    types: [created]
 
 jobs:
   build:
@@ -37,6 +37,6 @@ jobs:
           file: ./Dockerfile
           push: true
           tags: |
-            ghcr.io/testlumo/backend:${{ env.VERSION }}  # Tag basé sur la version sémantique
-            ghcr.io/testlumo/backend:latest                # Tag latest pour la version la plus récente
-            ghcr.io/testlumo/backend:${{ github.sha }}     # Tag basé sur le SHA du commit
+            ghcr.io/testlumo/backend:${{ env.VERSION }}  # Utiliser la version sémantique
+            ghcr.io/testlumo/backend:latest               # Tag pour la version la plus récente
+            ghcr.io/testlumo/backend:${{ github.sha }}    # Tag basé sur le SHA du commit
