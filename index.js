@@ -8,5 +8,5 @@ app.get('/api/hello', (req, res) => {
 });
 
 app.listen(port, () => {
-    console.log(`Server is runneeeing on http://localhost:${port}`);
+    console.log(`Server is prout on http://localhost:${port}`);
 });
