@@ -2,8 +2,11 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: lumo-backend
+  annotations:
+    keel.sh/policy: "latest"  # Met à jour à chaque fois qu'une nouvelle image est publiée
+    keel.sh/trigger: "poll"     # Vérifie périodiquement les nouvelles images
 spec:
-  replicas: 10
+  replicas: 4
   selector:
     matchLabels:
       app: lumo-backend
