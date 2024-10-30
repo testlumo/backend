@@ -4,7 +4,8 @@ metadata:
   name: lumo-backend
   annotations:
     keel.sh/policy: "force"  # Met à jour à chaque fois qu'une nouvelle image est publiée
-    keel.sh/trigger: "poll"     # Vérifie périodiquement les nouvelles images
+    keel.sh/trigger: "poll"   # Vérifie périodiquement les nouvelles images
+    keel.sh/prune: "true"      # Prune les ReplicaSets non utilisés
 spec:
   replicas: 4
   selector:
@@ -22,3 +23,8 @@ spec:
         - containerPort: 3000
       imagePullSecrets:
       - name: ghcr-secret
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxSurge: 1
+      maxUnavailable: 1
