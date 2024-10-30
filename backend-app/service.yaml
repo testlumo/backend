@@ -1,24 +1,12 @@
-apiVersion: apps/v1
-kind: Deployment
+apiVersion: v1
+kind: Service
 metadata:
-  name: lumo-backend
-  annotations:
-    argocd-image-updater.argoproj.io/image-list: "backend=ghcr.io/testlumo/backend"
-    argocd-image-updater.argoproj.io/backend.update-strategy: "latest"
+  name: lumo-backend-service
 spec:
-  replicas: 10
   selector:
-    matchLabels:
-      app: lumo-backend
-  template:
-    metadata:
-      labels:
-        app: lumo-backend
-    spec:
-      containers:
-      - name: backend
-        image: ghcr.io/testlumo/backend:latest
-        ports:
-        - containerPort: 3000
-      imagePullSecrets:
-      - name: ghcr-secret
+    app: lumo-backend
+  ports:
+    - protocol: TCP
+      port: 80
+      targetPort: 3000
+  type: ClusterIP
