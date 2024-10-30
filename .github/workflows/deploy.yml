@@ -26,5 +26,4 @@ jobs:
           file: ./Dockerfile
           push: true
           tags: |
-            ghcr.io/testlumo/backend:${{ github.sha }}
             ghcr.io/testlumo/backend:latest
