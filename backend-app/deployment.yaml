@@ -3,9 +3,9 @@ kind: Deployment
 metadata:
   name: lumo-backend
   annotations:
-    keel.sh/policy: "force"  # Met à jour à chaque fois qu'une nouvelle image est publiée
-    keel.sh/trigger: "poll"   # Vérifie périodiquement les nouvelles images
-    keel.sh/prune: "true"      # Prune les ReplicaSets non utilisés
+    keel.sh/policy: "force"
+    keel.sh/trigger: "poll"
+    keel.sh/prune: "true"
 spec:
   replicas: 4
   selector:
