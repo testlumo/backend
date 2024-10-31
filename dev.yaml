@@ -1,0 +1,21 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: application-backend
+  namespace: argocd
+  annotations:
+    argocd-image-updater.argoproj.io/image-list: ghcr.io/testlumo/backend
+    argocd-image-updater.argoproj.io/backend.tag: latest
+spec:
+  source:
+    repoURL: https://github.com/testlumo/backend.git
+    targetRevision: main
+    path: manifests
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: default
+  project: default
+  syncPolicy:
+    automated:
+      prune: true            # Permet de supprimer les ressources qui ne sont plus dans Git
+      selfHeal: true          # Corrige automatiquement les écarts détectés dans le cluster
