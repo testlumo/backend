@@ -6,6 +6,10 @@ metadata:
   annotations:
     argocd-image-updater.argoproj.io/image-list: ghcr.io/testlumo/backend
     argocd-image-updater.argoproj.io/backend.tag: latest
+    argocd-image-updater.argoproj.io/enable: "true"
+    argocd-image-updater.argoproj.io/image-alias.force-update: 'true'
+    argocd-image-updater.argoproj.io/image-alias: ghcr.io/testlumo/backend
+    argocd-image-updater.argoproj.io/image-alias.tag: latest
 spec:
   source:
     repoURL: https://github.com/testlumo/backend.git
