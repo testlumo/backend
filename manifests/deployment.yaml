@@ -3,8 +3,8 @@ kind: Deployment
 metadata:
   name: lumo-backend
   annotations:
-    argocd-image-updater.argoproj.io/image-list: ghcr.io/testlumo/backend  # Indique à l'updater quel registre surveiller
-    argocd-image-updater.argoproj.io/image-update-strategy: tag         # Définit la stratégie de mise à jour sur les tags d'image
+    argocd-image-updater.argoproj.io/image-list: "ghcr.io/testlumo/backend"
+    argocd-image-updater.argoproj.io/image-update-strategy: tag
 spec:
   replicas: 1
   selector:
@@ -17,11 +17,11 @@ spec:
     spec:
       containers:
       - name: backend
-        image: ghcr.io/testlumo/backend:latest  # Tag à surveiller
+        image: ghcr.io/testlumo/backend:latest
         ports:
         - containerPort: 3000
       imagePullSecrets:
-      - name: ghcr-secret  # Secret pour accéder au registre d'images
+      - name: ghcr-secret
   strategy:
     type: RollingUpdate
     rollingUpdate:
