@@ -2,10 +2,6 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: lumo-backend
-  annotations:
-    keel.sh/policy: "force"
-    keel.sh/trigger: "poll"
-    keel.sh/prune: "true"
 spec:
   replicas: 1
   selector:
