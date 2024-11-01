@@ -17,7 +17,7 @@ spec:
     path: manifests  # Chemin vers le dossier où se trouvent les manifestes Kubernetes
   destination:
     server: 'https://kubernetes.default.svc'
-    namespace: default  # Namespace où déployer les ressources
+    namespace: default  # Namespace où déployer les ressourceseee
   syncPolicy:
     automated:
       prune: true         # Supprime les ressources qui ne sont plus dans les manifestes
