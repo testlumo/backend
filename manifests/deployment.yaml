@@ -4,7 +4,7 @@ metadata:
   name: lumo-backend
   annotations:
     argocd-image-updater.argoproj.io/image-list: "ghcr.io/testlumo/backend"
-    argocd-image-updater.argoproj.io/image-update-strategy: tag
+    argocd-image-updater.argoproj.io/backend.update-strategy: "latest" # Ajoute cette stratégie pour forcer les updates
 spec:
   replicas: 1
   selector:
@@ -17,10 +17,10 @@ spec:
     spec:
       containers:
       - name: backend
-        image: ghcr.io/testlumo/backend:latest
+        image: ghcr.io/testlumo/backend:latest # Utilise le tag 'latest'
         ports:
         - containerPort: 3000
       imagePullSecrets:
-      - name: ghcr-secret
+      - name: ghcr-secret # Assurez-vous que ce secret est bien configuré
   strategy:
-    imagePullPolicy: Always
+    type: RollingUpdate
