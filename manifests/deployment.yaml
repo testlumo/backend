@@ -11,17 +11,14 @@ spec:
     metadata:
       labels:
         app: lumo-backend
-      annotations:  # Déplacez les annotations ici
-        argocd-image-updater.argoproj.io/image-list: "ghcr.io/testlumo/backend"
-        argocd-image-updater.argoproj.io/backend.update-strategy: "latest"
+      annotations:
+        keel.sh/update-strategy: "latest"  # Stratégie de mise à jour
+        keel.sh/image: "ghcr.io/testlumo/backend"  # Image à surveiller
     spec:
       containers:
       - name: backend
-        image: ghcr.io/testlumo/backend:latest  # Utilise le tag 'latest'
-        imagePullPolicy: Always  # Assurez-vous que l'image est toujours tirée
+        image: ghcr.io/testlumo/backend:latest
         ports:
         - containerPort: 3000
       imagePullSecrets:
-      - name: ghcr-secret  # Assurez-vous que ce secret est bien configuré
-  strategy:
-    type: RollingUpdate
+      - name: ghcr-secret
