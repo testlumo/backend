@@ -18,6 +18,7 @@ spec:
       containers:
       - name: backend
         image: ghcr.io/testlumo/backend:latest  # Utilise le tag 'latest'
+        imagePullPolicy: Always  # Assurez-vous que l'image est toujours tirée
         ports:
         - containerPort: 3000
       imagePullSecrets:
