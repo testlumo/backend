@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
       - name: backend
-        image: ghcr.io/testlumo/backend:latest  # Utilise le tag 'latest'
+        image: ghcr.io/testlumo/backend:latest  # Utilise le tag 'latest'eee
         ports:
         - containerPort: 3000
       imagePullSecrets:

@@ -13,7 +13,7 @@ spec:
   project: default
   source:
     repoURL: 'https://github.com/testlumo/backend.git'
-    targetRevision: main
+    targetRevision: HEAD
     path: manifests  # Chemin vers le dossier où se trouvent les manifestes Kubernetes
   destination:
     server: 'https://kubernetes.default.svc'
