@@ -1,25 +1,20 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: application-backend
+  name: lumo-backend-app
   namespace: argocd
-  annotations:
-    argocd-image-updater.argoproj.io/image-list: ghcr.io/testlumo/backend
-    argocd-image-updater.argoproj.io/backend.tag: latest
-    argocd-image-updater.argoproj.io/enable: "true"
-    argocd-image-updater.argoproj.io/image-alias.force-update: 'true'
-    argocd-image-updater.argoproj.io/image-alias: ghcr.io/testlumo/backend
-    argocd-image-updater.argoproj.io/image-alias.tag: latest
 spec:
-  source:
-    repoURL: https://github.com/testlumo/backend.git
-    targetRevision: main
-    path: manifests
-  destination:
-    server: https://kubernetes.default.svc
-    namespace: default
   project: default
+  source:
+    repoURL: 'https://github.com/testlumo/backend.git'
+    targetRevision: main
+    path: manifests  # Chemin vers le dossier où se trouvent les manifestes Kubernetes
+  destination:
+    server: 'https://kubernetes.default.svc'
+    namespace: default  # Namespace où déployer les ressources
   syncPolicy:
     automated:
-      prune: true            # Permet de supprimer les ressources qui ne sont plus dans Git
-      selfHeal: true          # Corrige automatiquement les écarts détectés dans le cluster
+      prune: true         # Supprime les ressources qui ne sont plus dans les manifestes
+      selfHeal: true      # Corrige les écarts détectés automatiquement
+    syncOptions:
+      - CreateNamespace=true  # Crée le namespace s'il n'existe pas
