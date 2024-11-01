@@ -2,9 +2,6 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: lumo-backend
-  annotations:
-    argocd-image-updater.argoproj.io/image-list: "ghcr.io/testlumo/backend"
-    argocd-image-updater.argoproj.io/backend.update-strategy: "latest"
 spec:
   replicas: 1
   selector:
@@ -14,13 +11,16 @@ spec:
     metadata:
       labels:
         app: lumo-backend
+      annotations:  # Déplacez les annotations ici
+        argocd-image-updater.argoproj.io/image-list: "ghcr.io/testlumo/backend"
+        argocd-image-updater.argoproj.io/backend.update-strategy: "latest"
     spec:
       containers:
       - name: backend
-        image: ghcr.io/testlumo/backend:latest # Utilise le tag 'latest'
+        image: ghcr.io/testlumo/backend:latest  # Utilise le tag 'latest'
         ports:
         - containerPort: 3000
       imagePullSecrets:
-      - name: ghcr-secret # Assurez-vous que ce secret est bien configuré
+      - name: ghcr-secret  # Assurez-vous que ce secret est bien configuré
   strategy:
     type: RollingUpdate
