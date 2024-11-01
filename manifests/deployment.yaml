@@ -17,6 +17,7 @@ spec:
         keel.sh/update-strategy: "latest"  # Stratégie de mise à jour pour Keel
         keel.sh/image: "ghcr.io/testlumo/backend"  # Image à surveiller pour Keel
         keel.sh/policy: force  # Force la mise à jour de l'image
+        keel.sh/trigger: poll  # Déclenche la mise à jour de l'image
     spec:
       containers:
       - name: backend
