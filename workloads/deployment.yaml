@@ -1,0 +1,23 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: lumo-backend
+  labels:
+    app: lumo-backend
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: lumo-backend
+  template:
+    metadata:
+      labels:
+        app: lumo-backend
+    spec:
+      containers:
+      - name: backend
+        image: ghcr.io/testlumo/backend:latest  # Utilise le tag 'latest'
+        ports:
+        - containerPort: 3000
+      imagePullSecrets:
+      - name: ghcr-secret  # Assurez-vous que ce secret est bien configuré
