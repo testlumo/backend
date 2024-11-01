@@ -4,7 +4,7 @@ metadata:
   name: lumo-backend
   annotations:
     argocd-image-updater.argoproj.io/image-list: "ghcr.io/testlumo/backend"
-    argocd-image-updater.argoproj.io/backend.update-strategy: "latest" # Ajoute cette stratégie pour forcer les updates
+    argocd-image-updater.argoproj.io/backend.update-strategy: "latest"
 spec:
   replicas: 1
   selector:
