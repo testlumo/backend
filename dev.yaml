@@ -3,6 +3,11 @@ kind: Application
 metadata:
   name: lumo-backend-app
   namespace: argocd
+  finalizers:
+    - resources-finalizer.argocd.argoproj.io
+  annotations:
+    argocd-image-updater.argoproj.io/image-list: ghcr.io/testlumo/backend
+    argocd-image-updater.argoproj.io/git-branch: main
 spec:
   project: default
   source:
@@ -16,5 +21,3 @@ spec:
     automated:
       prune: true         # Supprime les ressources qui ne sont plus dans les manifestes
       selfHeal: true      # Corrige les écarts détectés automatiquement
-    syncOptions:
-      - CreateNamespace=true  # Crée le namespace s'il n'existe pas
